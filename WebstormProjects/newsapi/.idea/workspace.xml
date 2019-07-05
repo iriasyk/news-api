@@ -28,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="541">
-              <caret line="153" column="109" selection-start-line="153" selection-start-column="109" selection-end-line="153" selection-end-column="109" />
+            <state relative-caret-position="2345">
+              <caret line="151" column="37" lean-forward="true" selection-start-line="151" selection-start-column="37" selection-end-line="151" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -56,11 +56,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>acc</find>
-      <find>backgr</find>
-      <find>console</find>
-      <find>title</find>
-      <find>wrapper</find>
       <find>%</find>
       <find>.heart</find>
       <find>active</find>
@@ -86,6 +81,11 @@
       <find>divWithNews</find>
       <find>innerHTML</find>
       <find>container-news</find>
+      <find>createElement</find>
+      <find>innerText</find>
+      <find>classList</find>
+      <find>setAttribute</find>
+      <find>appendChild</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -182,12 +182,12 @@
       <workItem from="1562220831751" duration="14656000" />
       <workItem from="1562238321644" duration="12889000" />
       <workItem from="1562307587166" duration="22248000" />
-      <workItem from="1562337327616" duration="17645000" />
+      <workItem from="1562337327616" duration="17899000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91275000" />
+    <option name="totallyTimeSpent" value="91529000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="816" extended-state="0" />
@@ -232,8 +232,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="153" column="109" selection-start-line="153" selection-start-column="109" selection-end-line="153" selection-end-column="109" />
+        <state relative-caret-position="2345">
+          <caret line="151" column="37" lean-forward="true" selection-start-line="151" selection-start-column="37" selection-end-line="151" selection-end-column="37" />
         </state>
       </provider>
     </entry>
