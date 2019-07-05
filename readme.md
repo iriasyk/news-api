@@ -1,2 +1,2 @@
 Demo Link:
-https://iriasyk.github.io//news-api/blob/master/WebstormProjects/newsapi/src/index.html
+https://iriasyk.github.io//news-api/WebstormProjects/newsapi/src/index.html
