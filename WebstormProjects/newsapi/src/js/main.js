@@ -1,142 +1,156 @@
 'use strict';
 
-const
-    url = 'https://newsapi.org/v2/sources?apiKey=ba82c88fb4c4409fb16ee979db68c14e',
+const url = 'https://newsapi.org/v2/sources?apiKey=ba82c88fb4c4409fb16ee979db68c14e', // url на данные всех источников
     req = new Request(url),
     divWrapper = document.querySelector('.wrapper');
 
+const createNewElement = (tagName) => document.createElement(tagName),
+    addText = (element, text) => element.innerText = text, // ф-я добавление текста в тег
+    addClassList = (element, className) => element.classList.add(className), // ф-я добавления класса в елемент
+    addAttribute = (element, nameAttribute, value) => element.setAttribute(nameAttribute, value), // ф-я добавления атрибута с значением в елемент
+    addChildToParent = (parentElement, childrenElement) => parentElement.appendChild(childrenElement); // ф-я добавления дочернего елемента в родительский елемент
+
 fetch(req)
-    .then((response) => response.json())
-    .then((response) => {
-            const everythingInformation = response.sources,
-                selectHeader = document.createElement('select');
+    .then(response => response.json())
+    .then(response => {
+        const everythingInformation = response.sources,
+            selectHeader = createNewElement('select');
 
-            for (let i = 0; i < everythingInformation.length; i++) {
-                const option = document.createElement('option');
-                option.innerHTML = `${everythingInformation[i].name}`;
-                option.setAttribute('data-id', `${everythingInformation[i].id}`);
-                option.classList.add('active-option');
+        for (let i = 0; i < everythingInformation.length; i++) {
+            const option = createNewElement('option');
 
-                selectHeader.appendChild(option);
-            }
+            addText(option, `${everythingInformation[i].name}`); // заполнение option источниками
 
-            selectHeader.addEventListener ('change', function (e) {
-                const newOption = this.options[this.selectedIndex].getAttribute('data-id'),
-                    selectObj = everythingInformation.filter((x) => x.id === newOption);
+            addAttribute(option, 'data-id', `${everythingInformation[i].id}`); // создание id для каждого источника
 
-                let url = `https://newsapi.org/v2/everything?sources=${selectObj[0].id}&apiKey=ba82c88fb4c4409fb16ee979db68c14e`;
-                const req = new Request(url);
-                fetch(req)
-                    .then((response) => response.json())
-                    .then((response) => {
-                        console.log(response.articles);
+            addChildToParent(selectHeader, option); // добавление option в select
+        }
 
-                        const sourcesInfo = response.articles,
-                            divWithNews = document.querySelector('.container-parent__news');
+        function changeAll(e) {
+            const newOption = this.options[this.selectedIndex].getAttribute('data-id'), // получение значение data-id элемента option
+                selectObj = everythingInformation.find(x => x.id === newOption); // поиск id в обьекте, что равен значию в атрибуте data-id
 
-                        divWithNews.innerHTML = '';
+            let url = `https://newsapi.org/v2/everything?sources=${selectObj.id}&apiKey=ba82c88fb4c4409fb16ee979db68c14e`; // генерация сменного url, для получения новости от определённого источника
+            const req = new Request(url);
 
-                        for (let i = 0; i < sourcesInfo.length; i++) {
-                            const
-                                divWrapperCard = document.createElement('div'),
-                                divImg = document.createElement('div'),
-                                img = document.createElement('img'),
-                                linkA = document.createElement('a'),
-                                divDescription = document.createElement('div'),
-                                divFooter = document.createElement('div'),
-                                spanForTime = document.createElement('span'),
-                                buttonLike = document.createElement('div'),
-                                titleH3 = document.createElement('h3');
+            fetch(req)
+                .then(response => response.json())
+                .then(response => {
+                    const sourcesInfo = response.articles,
+                        divWithNews = document.querySelector('.container-parent__news');
 
-                            linkA.setAttribute('target', '_blank');
-                            linkA.setAttribute('href', `${sourcesInfo[i].url}`);
+                    divWithNews.innerHTML = ''; // чистка старых полученных новостей, при смене источника
 
-                            img.setAttribute('src', `${sourcesInfo[i].urlToImage}`);
-                            img.setAttribute('alt', `${sourcesInfo[i].source.name}`);
+                    for (let i = 0; i < sourcesInfo.length; i++) {
+                        const divWrapperCard = createNewElement('div'),
+                            divImg = createNewElement('div'),
+                            img = createNewElement('img'),
+                            linkA = createNewElement('a'),
+                            divDescription = createNewElement('div'),
+                            divFooter = createNewElement('div'),
+                            spanForTime = createNewElement('span'),
+                            buttonLike = createNewElement('div'),
+                            titleH3 = createNewElement('h3');
 
-                            linkA.appendChild(img);
-                            divImg.appendChild(linkA);
-                            divDescription.innerHTML = `${sourcesInfo[i].description}`;
-                            spanForTime.innerHTML = `${sourcesInfo[i].publishedAt}`;
-                            titleH3.innerHTML = `${sourcesInfo[i].title}`;
+                        addAttribute(linkA, 'target', '_blank'); // генерация атрибута target="_blank" для ссылок
+                        addAttribute(linkA, 'href', `${sourcesInfo[i].url}`); // генерация url для атрибута href в ссылке
+                        addAttribute(img, 'src', `${sourcesInfo[i].urlToImage}`); // генерация url для картинки ссылки
+                        addAttribute(img, 'alt', `${sourcesInfo[i].source.name}`); // генерация описания для картинки ссылки
+                        addAttribute(divWrapperCard, 'data-id', `${sourcesInfo[i].source.id}${i}`); // создание атрибута data-id с определённым id новости от источника
 
-                            img.classList.add('image-news');
-                            divImg.classList.add(`container-news`);
-                            divDescription.classList.add(`description-news`);
-                            divFooter.classList.add(`footer-container`);
-                            divWrapperCard.classList.add(`wrapper-card`);
-                            buttonLike.classList.add('heart-img');
-                            titleH3.classList.add('titles');
+                        addText(divDescription, `${sourcesInfo[i].description}`); // заполнение блока .description-news описанием
+                        addText(spanForTime, `${sourcesInfo[i].publishedAt}`); // заполнение span временем публикации новости от источника
+                        addText(titleH3, `${sourcesInfo[i].title}`); // заполнение h3 текстом, что являеться заголовком новости
 
-                            divWrapperCard.appendChild(divImg);
-                            divWrapperCard.appendChild(divDescription);
-                            divFooter.appendChild(spanForTime);
-                            divFooter.appendChild(buttonLike);
-                            divWrapperCard.setAttribute('data-id', `${sourcesInfo[i].source.id}${i}`);
-                            divWrapperCard.appendChild(divFooter);
-                            divWithNews.appendChild(titleH3);
-                            divWithNews.appendChild(divWrapperCard);
+                        addClassList(img, 'image-news');
+                        addClassList(divImg, 'container-news');
+                        addClassList(divDescription, 'description-news');
+                        addClassList(divFooter, 'footer-container');
+                        addClassList(divWrapperCard, 'wrapper-card');
+                        addClassList(buttonLike, 'heart-img');
+                        addClassList(titleH3, 'titles');
+
+                        addChildToParent(linkA, img); // добавление img в ссылку
+                        addChildToParent(divImg, linkA); // добавление ссылки в блок .container-news
+                        addChildToParent(divWrapperCard, divImg); // добавление блока с картинкой в карточку новости
+                        addChildToParent(divWrapperCard, divDescription); // добавление блока с описанием в карточку новости
+                        addChildToParent(divFooter, spanForTime); // добавление время публикации новости в карточку
+                        addChildToParent(divFooter, buttonLike); // добавление кнопки "мне нравиться" в блок .footer-container
+                        addChildToParent(divWrapperCard, divFooter); // добавление .footer-container в карточку новостей
+                        addChildToParent(divWithNews, titleH3); // добавление заголовка в карточку новостей
+                        addChildToParent(divWithNews, divWrapperCard); // добавление карточки новостей в wrapper для всех новостей
+                    }
+
+                    addChildToParent(divWrapper, divWithNews); // добавление всего блока с новостями в родительский wrapper
+
+                    const heart = document.querySelectorAll('.heart-img');
+
+                    heart.forEach(element => {
+                        const wrapper = element.closest('.wrapper-card'), // поиска родительского блока с классом .wrapper-card
+                            valueDataId = wrapper.getAttribute('data-id'), // получение значения атрибута data-id с ближайшего найденного элемента с классом .wrapper-card
+                            valueLocalStorage = localStorage.getItem(`${valueDataId}`); // получение значения из локаольного хранилища по ключу valueDataId
+
+                        if(valueLocalStorage) { // проверка сущестования значения из локального хранилища
+                            valueLocalStorage === 'true' ?
+                                addClassList(element, 'active-heart') : // добавление картинки в виде "активного" сердечка
+                                addClassList(element, 'passive-heart'); // добавление картинки в виде "пассивного" сердечка
+                        }
+                    });
+
+                    let heartFlag;
+
+                    function renderHeart() { // ф-я логики рендера сердечек
+                        const wrapper = this.closest('.wrapper-card'),
+                            valueDataId = wrapper.getAttribute('data-id'),
+                            valueLocalStorage = localStorage.getItem(`${valueDataId}`);
+
+                        if(valueLocalStorage === null) { // проверка на сущестовавание значения ключа valueDataId
+                            heartFlag = true;
+
+                            localStorage.setItem(`${valueDataId}`, `${heartFlag}`); // если значения не существовало, то теперь значения ключа valueDataId будет true
+
+                            // console.log('1', heartFlag, valueLocalStorage);
+                        } else if(valueLocalStorage === 'true') { // проверка значения на, то что сердечко активно
+                            heartFlag = false;
+
+                            localStorage.setItem(`${valueDataId}`, `${heartFlag}`); // сохранение значения false в valueDataId
+
+                            // console.log('2', heartFlag, valueLocalStorage);
+                        } else if(valueLocalStorage === 'false') { // проверка значения на то, что сердечко не активно
+                            heartFlag = true;
+
+                            localStorage.setItem(`${valueDataId}`, `${heartFlag}`); // сохранение значения true в valueDataId
+
+                            // console.log('3', heartFlag, valueLocalStorage);
                         }
 
-                        divWrapper.appendChild(divWithNews);
+                        // console.log(valueLocalStorage);
 
-                        const heart = document.querySelectorAll('.heart-img');
+                        heartFlag === true ?
+                            this.classList.toggle('active-heart') : // добавление класса active-heart если не было, удаление если было
+                            this.classList.toggle('passive-heart'); // добавление класса passive-heart если не было, удаление если было
+                    }
 
-                        heart.forEach(element => {
-                            const
-                                wrapper = element.closest('.wrapper-card'),
-                                valueDataId = wrapper.getAttribute('data-id');
+                    heart.forEach(element => element.addEventListener('click', renderHeart)); // подвешивание события для рендера сердечка по клику
 
-                            if(JSON.parse(localStorage.getItem(`${valueDataId}`))) {
-                                JSON.parse(localStorage.getItem(`${valueDataId}`)) === true ?
-                                    element.classList.add('active-heart') :
-                                    element.classList.add('passive-heart');
-                            }
-                        });
+                    const titles = document.querySelectorAll('.titles'),
+                        active = document.getElementsByClassName('active'); // для возвращения живой коллекции
 
+                    function updateClassTitle() {
+                        if (active.length > 0 && active[0] !== this) { // если есть активный элемент, и это не тот по которому кликнули
+                            active[0].classList.remove('active'); // удаление класса active
+                        }
 
-                        let heartFlag = false;
+                        this.classList.toggle('active'); // добавление класса active если не было, удаление если было
+                    }
 
-                        heart.forEach(
-                            element => element.addEventListener('click', function renderHeart() {
-                                const
-                                    wrapper = this.closest('.wrapper-card'),
-                                    valueDataId = wrapper.getAttribute('data-id');
-
-                                if(JSON.parse(localStorage.getItem(`${valueDataId}`))) {
-                                    this.valueDataId = !heartFlag;
-
-                                    localStorage.setItem(`${valueDataId}`, `${heartFlag}`);
-
-                                    heartFlag === false ?
-                                        this.classList.toggle('passive-heart') :
-                                        this.classList.toggle('active-heart');
-                                } else {
-                                    this.valueDataId = true;
-
-                                    localStorage.setItem(`${valueDataId}`, `${this.valueDataId}`);
-
-                                    this.valueDataId === false ?
-                                        this.classList.toggle('passive-heart') :
-                                        this.classList.toggle('active-heart');
-                                }
-                            }
-                        ));
-
-                        const titles = document.querySelectorAll('.titles'),
-                            active = document.getElementsByClassName('active');
-
-                        Array.from(titles).forEach((item) => {
-                            item.addEventListener('click', function(e) {
-                                if (active.length > 0 && active[0] !== this) {
-                                    active[0].classList.remove('active');
-                                }
-
-                                this.classList.toggle('active');
-                            });
-                        });
+                    titles.forEach(item => {
+                        item.addEventListener('click', updateClassTitle); // подвешивание события на заголовок
+                    });
                 });
-            });
-            divWrapper.appendChild(selectHeader);
         }
-    );
+        selectHeader.addEventListener('change', changeAll); // подвешивание change для отрисовки и контроля всего контента
+
+        addChildToParent(divWrapper, selectHeader); // добавление select в самый главный родительский wrapper
+    }
+);

@@ -19,26 +19,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="108" column="35" selection-start-line="108" selection-start-column="35" selection-end-line="108" selection-end-column="35" />
+            <state relative-caret-position="75">
+              <caret line="5" column="92" selection-start-line="5" selection-start-column="92" selection-end-line="5" selection-end-column="92" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/js/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="541">
+              <caret line="153" column="109" selection-start-line="153" selection-start-column="109" selection-end-line="153" selection-end-column="109" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="191" selection-start-line="191" selection-end-line="191" />
+            <state relative-caret-position="15">
+              <caret line="42" column="15" lean-forward="true" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -56,18 +56,8 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>40px</find>
-      <find>container</find>
-      <find>time</find>
-      <find>length</find>
-      <find>len</find>
-      <find>Key</find>
-      <find>set</find>
-      <find>clear</find>
-      <find>buttonLike</find>
       <find>acc</find>
       <find>backgr</find>
-      <find>heart</find>
       <find>console</find>
       <find>title</find>
       <find>wrapper</find>
@@ -86,14 +76,24 @@
       <find>.titles</find>
       <find>.wrapper-card</find>
       <find>500</find>
+      <find>JSON</find>
+      <find>web</find>
+      <find>=&gt;</find>
+      <find>heart</find>
+      <find>act</find>
+      <find>addEvent</find>
+      <find>divWrapper</find>
+      <find>divWithNews</find>
+      <find>innerHTML</find>
+      <find>container-news</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/index.html" />
-        <option value="$PROJECT_DIR$/src/js/main.js" />
         <option value="$PROJECT_DIR$/src/css/main.css" />
+        <option value="$PROJECT_DIR$/src/js/main.js" />
       </list>
     </option>
   </component>
@@ -114,6 +114,23 @@
             <path>
               <item name="newsapi" type="b2602c69:ProjectViewProjectNode" />
               <item name="newsapi" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="newsapi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="newsapi" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="newsapi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="newsapi" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="newsapi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="newsapi" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -165,11 +182,12 @@
       <workItem from="1562220831751" duration="14656000" />
       <workItem from="1562238321644" duration="12889000" />
       <workItem from="1562307587166" duration="22248000" />
+      <workItem from="1562337327616" duration="17645000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73630000" />
+    <option name="totallyTimeSpent" value="91275000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="816" extended-state="0" />
@@ -200,22 +218,22 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="108" column="35" selection-start-line="108" selection-start-column="35" selection-end-line="108" selection-end-column="35" />
+        <state relative-caret-position="75">
+          <caret line="5" column="92" selection-start-line="5" selection-start-column="92" selection-end-line="5" selection-end-column="92" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="191" selection-start-line="191" selection-end-line="191" />
+        <state relative-caret-position="15">
+          <caret line="42" column="15" lean-forward="true" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="153" column="109" selection-start-line="153" selection-start-column="109" selection-end-line="153" selection-end-column="109" />
         </state>
       </provider>
     </entry>
