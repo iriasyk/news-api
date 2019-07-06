@@ -31,6 +31,8 @@ h3
 
 .wrapper-card
 {
+    flex-direction: column;
+    align-items: center;
     box-sizing: border-box;
     overflow: hidden;
     flex-wrap: wrap;
@@ -62,12 +64,15 @@ h3
 
 .image-news
 {
+    min-height: 450px;
     box-shadow: 10px 12px 20px -8px rgba(0,0,0,0.75);
     width: 55%;
 }
 
 .description-news
 {
+    display: flex;
+    align-items: center;
     font-size: 19px;
     padding: 5px 0px;
     margin: 0px 10px;
@@ -78,12 +83,13 @@ h3
 {
     position: relative;
     display: flex;
-    width: 100%;
+    width: 92%;
     justify-content: space-between;
     padding: 10px 0px;
     margin: 0px 10px;
     text-align: center;
     color: #a8abbf;
+    margin-top: 20px;
 }
 
 .heart-img
@@ -98,7 +104,7 @@ h3
     height: 50px;
     width: 50px;
     left: 94%;
-    top: 16%;
+    top: 50%;
     transform: translate(-50%,-49.5%);
 }
 
@@ -158,30 +164,50 @@ h3
     width: 100%;
 }
 
-@media (min-width: 576px) and (max-width: 767px)
-{
-    .description-news {
-        font-size: 15px;
-    }
-
-    .wrapper-card
-    {
-        width: 100%;
-    }
-}
-
 @media (min-width: 768px) and (max-width: 991px)
 {
+    select
+    {
+        font-size: 60px;
+    }
+
+    .active + .wrapper-card {
+        height: 900px;
+    }
+
+    .image-news
+    {
+        width: 70%;
+        height: 457px;
+    }
+
+    .description-news {
+        font-size: 42px;
+        width: 85%;
+        height: 300px;
+    }
+
+    .footer-container
+    {
+        width: 85%;
+    }
+
+    .footer-container span{
+        font-size: 40px;
+    }
+
+    .heart-img
+    {
+        height: 110px;
+        width: 110px;
+    }
+
     .container-parent__news
     {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         position: relative;
-    }
-
-    .description-news {
-        font-size: 23px;
     }
 }
 
